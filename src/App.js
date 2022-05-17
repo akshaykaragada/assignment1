@@ -3,39 +3,39 @@ import Loading from './Loading';
 import './App.css';
 
 function App() {
-  const [user, setUser] = useState([]);
-  const [ImgUrl, setImgUrl] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [UserVar, setUserVaf] = useState([]);
+  const [ImgUrlVar, setImgUrlVaf] = useState([]);
+  const [LoadingVar, setLoadingVaf] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(false)
+      setLoadingVaf(false)
     }, 4000)
     fetch("https://jsonplaceholder.typicode.com/users")
       .then(res => res.json())
-      .then(data => setUser(data),
-        setImgUrl(`https://avatars.dicebear.com/api/avataaars/seed.svg?options[mood][]=happy`)
+      .then(data => setUserVaf(data),
+        setImgUrlVaf(`https://avatars.dicebear.com/api/avataaars/seed.svg?options[mood][]=happy`)
       )
       .catch(err => console.log(err))
   }, [])
 
   return (
     <div>
-      {loading ? <Loading /> : user.map(user => {
+      {LoadingVar ? <Loading /> : UserVar.map(UserVar => {
         return (
-          <div key={user.id}>
+          <div key={UserVar.id}>
             <div className="card">
               <div class="wrap" >
                 <div class="imagebox">
-                  <img className="featured-image" src={ImgUrl.replace('seed', user.username)} alt="avatar" />
+                  <img className="featured-image" src={ImgUrlVar.replace('seed', UserVar.username)} alt="avatar" />
                 </div>
                 <div class="textbox">
-                  <h3 className="name">{user.name}</h3>
-                  <p><b>Email:</b> {user.email}</p>
-                  <p><b>Phone:</b> {user.phone}</p>
-                  <p><b>Company:</b> {user.company.name}</p>
-                  <p><b>Website:</b> {user.website}</p>
-                  <p><b>Address:</b> {user.address.street}, {user.address.suite}, {user.address.city}, {user.address.zipcode}</p>
+                  <h3 className="name">{UserVar.name}</h3>
+                  <p><b>Email:</b> {UserVar.email}</p>
+                  <p><b>Phone:</b> {UserVar.phone}</p>
+                  <p><b>Company:</b> {UserVar.company.name}</p>
+                  <p><b>Website:</b> {UserVar.website}</p>
+                  <p><b>Address:</b> {UserVar.address.street}, {UserVar.address.suite}, {UserVar.address.city}, {UserVar.address.zipcode}</p>
                 </div>
               </div>
             </div>
